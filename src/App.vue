@@ -1,19 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HeaderVue></HeaderVue>
+    <router-view></router-view>
+    <FooterVue v-show="
+    $route.meta.isShow"></FooterVue>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import HeaderVue from "./components/Header";
+import FooterVue from "./components/Footer";
 export default {
-  name: 'App',
+  name: "App",
+  data(){
+    return{
+    }
+  },
   components: {
-    HelloWorld
+    HeaderVue,
+    FooterVue,
+  },
+  computed:{
+  },
+  methods:{
+
   }
-}
+};
 </script>
 
 <style>
@@ -23,6 +35,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 </style>
