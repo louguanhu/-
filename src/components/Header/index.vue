@@ -16,7 +16,7 @@
                -->
               <router-link to="/login">登录</router-link>
               <router-link class="register" to="/register">注册</router-link>
-            </p>
+
             <!-- 如果登录显示的是用户名字与退出登录 -->
             <!-- <p v-else> -->
               <p>
@@ -74,9 +74,14 @@ export default {
       keyword:''
     }
   },
+mounted() {
+    this.$bus.$on('clear',()=>{
+      this.keyword=''
+  })
+},
   methods:{
     //搜索按钮的回调函数，并传递参数
-    goSearch(){
+    goSearch() {
       //路由传参
       //1.字符串形式
       // this.$router.push('/search/'+this.keyword+'?k='+this.keyword.toUpperCase())
@@ -93,15 +98,16 @@ export default {
       //可以在配置路由时占位后面加个问号表示可传可不传（path:'/search/:keyword?）
       //如何在传递时传递的params是个空的字符串，路径也会出现问题
       //传递时使用undefined解决问题
-      this.$router.push({name:'search',params:{
-        keyword:''||undefined,},
-        //通过给push方法传递成功和失败的回调函数，解决重复点击组件会报错 治标不治本
-        query:{k:this.keyword.toUpperCase()}}, ()=>{},()=>{})
-
+      let location = {name: 'search', params: {
+      keyword: this.keyword || undefined}}
+      if(this.$route.query){
+        location.query = this.$route.query
+      }
+      this.$router.push(location)
+      //通过给push方法传递成功和失败的回调函数，解决重复点击组件会报错 治标不治本
     }
-
   }
-};
+}
 </script>
 
 <style scoped lang="less">

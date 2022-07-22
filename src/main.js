@@ -16,6 +16,7 @@ Vue.component(TypeNav.name,TypeNav)
 Vue.component(Carousel.name,Carousel)
 Vue.config.productionTip = false;
 
+
 //引入MockServer.js,只是执行一次才能模拟数据
 import  '@/mock/mockServer'
 //引入swiper
@@ -24,6 +25,9 @@ import 'swiper/css/swiper.css'
 new Vue({
   render: (h) => h(App),
   router,
+  beforeCreate() {
+    Vue.prototype.$bus = this;
+    },
   //注册仓库，实例上会多出一个$store的属性
   store
 }).$mount("#app");

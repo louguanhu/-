@@ -7,7 +7,8 @@ const state = {
 };
 const mutations = {
   getHomeData(state, res) {
-    state.listdata = res;
+
+    state.listData = res;
   },
   getBannerList(state,data){
     state.bannerList=data

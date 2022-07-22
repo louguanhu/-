@@ -20,11 +20,9 @@ export default {
     HeaderVue,
     FooterVue,
   },
-  computed:{
-  },
-  methods:{
-
-  }
+ mounted() {
+   this.$store.dispatch("categoryList");
+ }
 };
 </script>
 
