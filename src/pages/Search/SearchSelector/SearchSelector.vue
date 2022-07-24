@@ -16,8 +16,8 @@
       <div class="fl key">{{attr.attrName}}</div>
       <div class="fl value">
         <ul class="type-list">
-          <li v-for="(attrvalue,index) in attr.attrValueList" :key="index">
-            <a>{{attrvalue}}</a>
+          <li v-for="(attrValue,index) in attr.attrValueList" :key="index" @click="attrInfo(attr,attrValue)">
+            <a>{{attrValue}}</a>
           </li>
 
         </ul>
@@ -38,7 +38,11 @@ export default {
   methods:{
       tradeMarkHandler(trademark){
           this.$emit('tradeMarkInfo',trademark)
-      }
+      },
+  //  平台售卖属性的操作
+    attrInfo(attr,attrValue){
+      this.$emit('attrInfo',attr,attrValue)
+    }
   },
   watch:{
 

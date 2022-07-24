@@ -11,7 +11,6 @@ const mutations={
 const actions ={
   async getSearchList({commit},payload ={}){
     //payload至少是一个空对象
-    console.log(payload)
     const result  = await reGetSearchInfo(payload)
     if(result.code===200){
       commit('searchInfo',result.data)
@@ -28,6 +27,9 @@ const getters = {
   },
   trademarksList(state){
     return state.searchList.trademarkList || []
+  },
+  total(state){
+    return state.searchList.total
   }
 }
 export default {
